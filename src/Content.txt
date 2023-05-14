@@ -1,0 +1,103 @@
+// import React, { useState } from "react";
+// import styled from "styled-components";
+
+// export default function OnLoad() {
+//   const [content, setContent] = useState("");
+
+//   const [words, setWords] = useState({});
+
+//   const FetchData = () => {
+//     fetch("https://www.terriblytinytales.com/test.txt")
+//       .then((response) => response.text())
+//       .then((data) => {
+//         setContent(data);
+//         const wordsArray = data.split(/\s+/);
+//         const wordsObject = {};
+//         for (let i = 0; i < wordsArray.length; i++) {
+//           const word = wordsArray[i].toLowerCase();
+//           if (word !== "") {
+//             if (word in wordsObject) {
+//               wordsObject[word]++;
+//             } else {
+//               wordsObject[word] = 1;
+//             }
+//           }
+//         }
+//         setWords(wordsObject);
+//       })
+//       .catch((error) => console.error(error));
+//   };
+
+//   const sortedWords = Object.keys(words).sort((a, b) => words[b] - words[a]);
+//   const top20Words = sortedWords.slice(0, 20);
+
+//   return (
+//     <MainContainer>
+//       <Button onClick={FetchData}>Fetch Data</Button>
+//       <p>{content}</p>
+//       <p>{content.length}</p>
+//       <h2>Top 20 Words</h2>
+//       <ul>
+//         {top20Words.map((word) => (
+//           <li key={word}>
+//             {word} - {words[word]}
+//           </li>
+//         ))}
+//       </ul>
+//     </MainContainer>
+//   );
+// }
+
+
+
+
+
+  {/* <h4>PRINTING THE CONTENT IN TEXT FORMAT </h4>
+        <p>{content}</p>
+        <p>{content.length}</p>
+
+        <h4>
+          PRINTING THE EACH WORD FROM THE CONTENT FETCHED AS AN ARRAY ELEMENTS
+        </h4>
+
+        <p>{conenttoword.length}</p>
+
+        <p>
+          {conenttoword.map((x, i) => {
+            return <li key={i}>{x}</li>;
+          })}
+        </p>
+
+        <h4>PRINTING THE WORD OBJECT</h4>
+        <p
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {sortedWordArray}
+        </p>
+        <h4>Printing top 20 word</h4>
+        <p
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {most20OccuringWord}
+        </p>
+
+        <h4>Printing last answer</h4>
+        <ul>
+          {most20OccuringWord.map((word) => (
+            <li key={word}>
+              {word} - {words[word]}
+            </li>
+          ))}
+        </ul> */}
