@@ -1,70 +1,243 @@
-# Getting Started with Create React App
+********** LIBRARIES AND PLUGINS USED  ************
+1. React
+2. useState
+3. react-apexcharts
+4. saveAs is imported from the file-saver
+5. style is imported from a local CSS module file for styling the component.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+********** EXPLANATION OF THE CODE  ************
 
-In the project directory, you can run:
+1. At first I have created the component folder inside the src folder . Inside the compoennt folder I have created two files ( i.e HistogramChart.js ,       
+   Histogram.module.css ).
+2. Here inside the HistogramChart.js I have written the code for creating the histogram by fetching the content form the link provided to me then I have plot the 20 most  
+   occuring word over the histogram .
+   and inside the Histogram.module.css I have written the css for HistogramChart.js file .
 
-### `npm start`
+********** EXPLANATION OF THE FILE HistogramChart.js ************
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+import React, { useState } from "react";
+import Chart from "react-apexcharts";
+import { saveAs } from "file-saver";
+import style from "./OnLoad.module.css";
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This above block of code imports the necessary modules and stylesheets. React is imported for creating the component, useState is imported for managing component state, Chart is imported from the react-apexcharts library for rendering the histogram chart, and saveAs is imported from the file-saver library for exporting data to a CSV file. style is imported from a local CSS module file for styling the component.
 
-### `npm test`
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+export default function HistogramChart() {
+       return (
+          <div>  </div>
+       );
+}
 
-### `npm run build`
+This line defines the component HistogramChart as a functional component that can be imported and used by other components.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const [showSubmitButton, setShowSubmitButton] = useState(true);
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This line declares a state variable showSubmitButton and a function setShowSubmitButton that can update the value of the state variable. It uses the useState hook from the React library to do this. The initial value of showSubmitButton is true, which means the "Submit" button will be shown when the component is first rendered. The setShowSubmitButton function is used to update the value of showSubmitButton later on.
 
-### `npm run eject`
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+const [chartData, setChartData] = useState(
+{
+      options: {
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+             chart: {
+                  id: "basic-bar",
+             },
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+             xaxis: {
+                  categories: [],                     
+             },
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+             plotOptions: {
+                  bar: {
+                       columnWidth:"100%",
+                       distributed:false,
+                  },
+              },
 
-## Learn More
+             dataLabels: {
+                  enabled: false,
+             },
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+             colors: ["#00122e"],
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+             fill: {
+                  type: "gradient",
+                  gradient: {
+                          shade: "light",
+                          type: "vertical",
+                          shadeIntensity: 0.5,
+                          gradientToColors: ["#ADD8E6"],
+                          inverseColors: false,
+                          opacityFrom: 1,
+                          opacityTo: 1,
+                          stops: [0, 100],
+                  },
+             },
+      },
+      series: [
+             {
+                 name: "Word Count",
+                 data: [],
+             },
+      ],
+}
+);
 
-### Code Splitting
+This code declares another state variable chartData and a function setChartData that can update the value of the state variable. The initial value of chartData is an object that contains options for a bar chart that will be rendered later in the component. This object has two properties: options and series.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+options is an object that contains various configuration options for a chart, such as its type, axis labels, colors, and data labels.
+      
+The chart property in the options object specifies the chart ID, which is used to identify the chart when multiple charts are present on the same page.
 
-### Analyzing the Bundle Size
+The xaxis property in the options object defines the X-axis of the chart and sets its categories to an empty array.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The plotOptions property in the options object defines the options for the plot of the chart, which in this case is a bar chart. The bar property sets the width of the bars to 100% and distributes them evenly.
 
-### Making a Progressive Web App
+The dataLabels property in the options object is used to enable or disable data labels in the chart, in this case they are disabled.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The colors property in the options object sets the color of the bars to #00122e.
 
-### Advanced Configuration
+The fill property in the options object sets the type of fill for the bars, which in this case is a gradient. The gradient starts with a light shade and goes to #ADD8E6
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The series property is an array of objects representing the data series in the chart. In this case, it contains a single object with a name property set to "Word Count" and a data property set to an empty array.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### `npm run build` fails to minify
+const fetchData = async () => {
+       const response = await
+fetch("https://www.terriblytinytales.com/test.txt");
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+    const text = await
+response.text();
+
+
+
+    const wordCount = {};
+
+
+
+    text
+
+
+
+      .toLowerCase()
+
+
+
+      .replace(/[\W_]+/g, "
+")
+
+
+
+      .split(/\s+/)
+
+
+
+      .forEach((word) => {
+
+
+
+        wordCount[word] = (wordCount[word] || 0)
++ 1;
+
+
+
+      });
+
+
+
+    const sortedWords =
+Object.entries(wordCount).sort(([, a], [, b]) => b - a);
+
+
+
+    const categories =
+sortedWords.slice(0, 20).map(([word]) => word);
+
+
+
+    const data =
+sortedWords.slice(0, 20).map(([, count]) => count);
+
+
+
+    setChartData({
+
+
+
+      options: {
+
+
+
+        ...chartData.options,
+
+
+
+        xaxis: {
+
+
+
+          categories,
+
+
+
+        },
+
+
+
+      },
+
+
+
+      series: [
+
+
+
+     {
+
+
+
+         name: "Word
+Count",
+
+
+
+         data,
+
+
+
+       },
+
+
+
+      ],
+
+
+
+    });
+
+
+
+   
+setShowSubmitButton(false);
+
+
+
+  };
+
+
+
+
+
+
+
