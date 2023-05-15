@@ -207,20 +207,20 @@ Line By Line Explanation of above written code :
 
 ***
 ```react
-  const handleExport = () => {
+    const handleExport = () => {
     const data = [
       ["Word", "Count"],
       ...chartData.series[0].data.map((count, i) => [
         chartData.options.xaxis.categories[i],
         count,
-      ]),
-    ];
-    const csv = data.map((row) => row.join(",")).join("\n");
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-    saveAs(blob, "histogram-data.csv");
-  };
+       ]),
+     ];
+     const csv = data.map((row) => row.join(",")).join("\n");
+     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+     saveAs(blob, "histogram-data.csv");
+    };
 ```
-* This code defines a function called handleExport, which is responsible for exporting the chart data to a CSV file. Let's break down the code line by line:
+This code defines a function called handleExport, which is responsible for exporting the chart data to a CSV file. Let's break down the code line by line:
    * ```react 
      const data = [...]
      ```
