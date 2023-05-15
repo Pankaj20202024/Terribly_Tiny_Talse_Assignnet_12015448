@@ -8,11 +8,9 @@
 
 ## **EXPLANATION OF THE CODE**
 
-1. At first I have created the component folder inside the src folder . Inside the compoennt folder I have created two files ( i.e HistogramChart.js ,       
-   Histogram.module.css ).
+1. At first I have created the component folder inside the src folder . Inside the compoennt folder I have created two files ( i.e HistogramChart.js ,Histogram.module.css      ).
 2. Here inside the HistogramChart.js I have written the code for creating the histogram by fetching the content form the link provided to me then I have plot the 20 most  
-   occuring word over the histogram .
-   and inside the Histogram.module.css I have written the css for HistogramChart.js file .
+   occuring word over the histogram , and inside the Histogram.module.css I have written the css for HistogramChart.js file .
 
 ## HistogramChart.js 
 
