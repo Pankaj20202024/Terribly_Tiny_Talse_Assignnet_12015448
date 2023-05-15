@@ -42,8 +42,7 @@ This line declares a state variable showSubmitButton and a function setShowSubmi
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-const [chartData, setChartData] = useState(
-{
+const [chartData, setChartData] = useState({
       options: {
 
              chart: {
@@ -87,8 +86,7 @@ const [chartData, setChartData] = useState(
                  data: [],
              },
       ],
-}
-);
+});
 
 This code declares another state variable chartData and a function setChartData that can update the value of the state variable. The initial value of chartData is an object that contains options for a bar chart that will be rendered later in the component. This object has two properties: options and series.
 
@@ -112,31 +110,31 @@ The series property is an array of objects representing the data series in the c
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 const fetchData = async () => {
-       const response = await fetch("https://www.terriblytinytales.com/test.txt");
-       const text = await response.text();
-       const wordCount = {};
-       text.toLowerCase()
+    const response = await fetch("https://www.terriblytinytales.com/test.txt");
+    const text = await response.text();
+    const wordCount = {};
+    text.toLowerCase()
            .replace(/[\W_]+/g, " ")
            .split(/\s+/)
            .forEach((word) => {
-                 wordCount[word] = (wordCount[word] || 0) + 1;
+                 wordCount[word] = (wordCount[word] || 0) + 1; 
            });
        const sortedWords = Object.entries(wordCount).sort(([, a], [, b]) => b - a);
        const categories = sortedWords.slice(0, 20).map(([word]) => word);
        const data = sortedWords.slice(0, 20).map(([, count]) => count);
        setChartData({
-                options: {
-                     ...chartData.options,
-                     xaxis: {
-                           categories,
-                     },
-                },
-                series: [
-                    {
+             options: {
+                 ...chartData.options,
+                 xaxis: {
+                      categories,
+                 },
+             },
+             series: [
+                 {
                      name: "Word Count",
                      data,
-                     },
-                ],
+                 },
+             ],
        });
        setShowSubmitButton(false);
 };
