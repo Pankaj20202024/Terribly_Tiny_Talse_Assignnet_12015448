@@ -112,128 +112,34 @@ The series property is an array of objects representing the data series in the c
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 const fetchData = async () => {
-       const response = await
-fetch("https://www.terriblytinytales.com/test.txt");
-
-
-
-    const text = await
-response.text();
-
-
-
-    const wordCount = {};
-
-
-
-    text
-
-
-
-      .toLowerCase()
-
-
-
-      .replace(/[\W_]+/g, "
-")
-
-
-
-      .split(/\s+/)
-
-
-
-      .forEach((word) => {
-
-
-
-        wordCount[word] = (wordCount[word] || 0)
-+ 1;
-
-
-
-      });
-
-
-
-    const sortedWords =
-Object.entries(wordCount).sort(([, a], [, b]) => b - a);
-
-
-
-    const categories =
-sortedWords.slice(0, 20).map(([word]) => word);
-
-
-
-    const data =
-sortedWords.slice(0, 20).map(([, count]) => count);
-
-
-
-    setChartData({
-
-
-
-      options: {
-
-
-
-        ...chartData.options,
-
-
-
-        xaxis: {
-
-
-
-          categories,
-
-
-
-        },
-
-
-
-      },
-
-
-
-      series: [
-
-
-
-     {
-
-
-
-         name: "Word
-Count",
-
-
-
-         data,
-
-
-
-       },
-
-
-
-      ],
-
-
-
-    });
-
-
-
-   
-setShowSubmitButton(false);
-
-
-
-  };
+       const response = await fetch("https://www.terriblytinytales.com/test.txt");
+       const text = await response.text();
+       const wordCount = {};
+       text.toLowerCase()
+           .replace(/[\W_]+/g, " ")
+           .split(/\s+/)
+           .forEach((word) => {
+                 wordCount[word] = (wordCount[word] || 0) + 1;
+           });
+       const sortedWords = Object.entries(wordCount).sort(([, a], [, b]) => b - a);
+       const categories = sortedWords.slice(0, 20).map(([word]) => word);
+       const data = sortedWords.slice(0, 20).map(([, count]) => count);
+       setChartData({
+                options: {
+                     ...chartData.options,
+                     xaxis: {
+                           categories,
+                     },
+                },
+                series: [
+                    {
+                     name: "Word Count",
+                     data,
+                     },
+                ],
+       });
+       setShowSubmitButton(false);
+};
 
 
 
