@@ -42,7 +42,8 @@ This line declares a state variable showSubmitButton and a function setShowSubmi
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-const [chartData, setChartData] = useState({
+const [chartData, setChartData] = useState(
+      {
       options: {
 
              chart: {
@@ -145,3 +146,6 @@ The series property is an array of objects representing the data series in the c
     });
     setShowSubmitButton(false);
   };
+
+
+
