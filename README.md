@@ -1,4 +1,4 @@
-## ** ********* LIBRARIES AND PLUGINS USED ******** **
+## **LIBRARIES AND PLUGINS USED**
 1. React
 2. useState
 3. react-apexcharts
@@ -6,7 +6,7 @@
 5. style is imported from a local CSS module file for styling the component.
 
 
-********** EXPLANATION OF THE CODE  ************
+## **EXPLANATION OF THE CODE**
 
 1. At first I have created the component folder inside the src folder . Inside the compoennt folder I have created two files ( i.e HistogramChart.js ,       
    Histogram.module.css ).
@@ -14,7 +14,7 @@
    occuring word over the histogram .
    and inside the Histogram.module.css I have written the css for HistogramChart.js file .
 
-********** EXPLANATION OF THE FILE HistogramChart.js ************
+## **EXPLANATION OF THE FILE HistogramChart.js **
 
 ****
 
@@ -149,30 +149,51 @@ The series property is an array of objects representing the data series in the c
 ```
 Line By Line Explanation of above written code :
 
-1. const fetchData = async () => {  } 
+1. ```react 
+     const fetchData = async () => {  } 
+   ```
      This lines defines an asynchronous function called fetchData. 
-2. const response = await fetch("https://www.terriblytinytales.com/test.txt");
+
+2. ``` react 
+     const response = await fetch("https://www.terriblytinytales.com/test.txt"
+   ```
    This makes an HTTP request to the URL https://www.terriblytinytales.com/test.txt using the fetch API and waits for the response.
-3. const text = await response.text();
+
+3. ``` react 
+   const text = await response.text();
+   ```
    This retrieves the response body as plain text.
-4. const wordCount = {};
+
+4. ```react
+   const wordCount = {};
+   ```
    This creates an empty object called wordCount which will store the count of each word.
-5. text
+5. ``` react 
+   text
       .toLowerCase()
       .replace(/[\W_]+/g, " ")
       .split(/\s+/)
       .forEach((word) => {
               wordCount[word] = (wordCount[word] || 0) + 1;
       });
-
+   ```
       This normalizes the text by converting it to lowercase, replacing all non-alphanumeric characters with a space, splitting the resulting text into an array of words,         and then counts the frequency of each word in the text by updating the wordCount object.
-6. const sortedWords = Object.entries(wordCount).sort(([,a], [, b]) => b - a);
+
+6. ``` react 
+   const sortedWords = Object.entries(wordCount).sort(([,a], [, b]) => b - a);
+   ```
    This converts the wordCount object into an array of [word, count] pairs using Object.entries(), sorts the array in descending order of the count, and stores the result      in sortedWords.
-7. const categories = sortedWords.slice(0,20).map(([word]) => word);
+
+7. ``` react 
+   const categories = sortedWords.slice(0,20).map(([word]) => word);
+   ```
    This selects the top 20 words with the highest count and extracts the word from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting        array of words in categories.      
-8. const data = sortedWords.slice(0, 20).map(([,count]) => count);
+8. ``` react 
+   const data = sortedWords.slice(0, 20).map(([,count]) => count);
+   ``` react
    This selects the top 20 words with the highest count and extracts the count from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting      array of counts in data.
-9. setChartData({
+9. ``` react 
+   setChartData({
        options: {
              ...chartData.options,
              xaxis: {
@@ -187,9 +208,13 @@ Line By Line Explanation of above written code :
        ],
    });
 
+``` 
+
 This updates the chartData state by merging the existing options object with a new xaxis object that includes the categories array, and creating a new series array with a single object that includes the data array and a name property.
 
-10. setShowSubmitButton(false);
+10. ``` react 
+    setShowSubmitButton(false);
+    ```
     This updates the showSubmitButton state to false, which will hide the submit button after the data is loaded.
 
 ****
@@ -210,22 +235,36 @@ This updates the chartData state by merging the existing options object with a n
 ```
 This code defines a function called handleExport, which is responsible for exporting the chart data to a CSV file. Let's break down the code line by line:
 
-1. const data = [...]
+1. ``` react 
+   const data = [...]
+   ```
    Define a new variable called data and set it to an array of arrays. The first array contains the column headers for the CSV file ("Word" and "Count"). The rest of the      arrays contain the actual data, which is taken from chartData.series[0].data.
 
-2. ...chartData.series[0].data.map((count, i) => [...]
+2. ``` react 
+   ...chartData.series[0].data.map((count, i) => [...]
+
+   ```
    Use the spread operator to add the results of a map function to the data array. The map function takes two arguments: count, which represents the count value for a          particular word, and i, which represents the index of the word in chartData.options.xaxis.categories.
 
-3. [chartData.options.xaxis.categories[i], count] 
+3. ``` react 
+   [chartData.options.xaxis.categories[i], count] 
+
+   ```
    Return a new array containing the word and its corresponding count value.
 
-4. const csv = data.map((row) => row.join(",")).join("\n"); 
+4. ``` react 
+   const csv = data.map((row) => row.join(",")).join("\n"); 
+   ```
    Define a new variable called csv and set it to a string that represents the CSV data. The map function takes each array in the data array and turns it into a comma-        separated string using the join method. The outer join method then concatenates all of these strings together, separated by newlines.
 
-5. const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+5. ``` react
+   const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+   ```
    Create a new Blob object containing the CSV data, with the MIME type set to "text/csv;charset=utf-8".
 
-6. saveAs(blob, "histogram-data.csv");
+6. ``` react 
+   saveAs(blob, "histogram-data.csv");
+   ```
    Use the saveAs function from the file-saver library to save the CSV file with the name "histogram-data.csv".
 
 ****
