@@ -90,21 +90,14 @@ This line declares a state variable showSubmitButton and a function setShowSubmi
 
 This code declares another state variable chartData and a function setChartData that can update the value of the state variable. The initial value of chartData is an object that contains options for a bar chart that will be rendered later in the component. This object has two properties: options and series.
 
-options is an object that contains various configuration options for a chart, such as its type, axis labels, colors, and data labels.
-      
-The chart property in the options object specifies the chart ID, which is used to identify the chart when multiple charts are present on the same page.
-
-The xaxis property in the options object defines the X-axis of the chart and sets its categories to an empty array.
-
-The plotOptions property in the options object defines the options for the plot of the chart, which in this case is a bar chart. The bar property sets the width of the bars to 100% and distributes them evenly.
-
-The dataLabels property in the options object is used to enable or disable data labels in the chart, in this case they are disabled.
-
-The colors property in the options object sets the color of the bars to #00122e.
-
-The fill property in the options object sets the type of fill for the bars, which in this case is a gradient. The gradient starts with a light shade and goes to #ADD8E6
-
-The series property is an array of objects representing the data series in the chart. In this case, it contains a single object with a name property set to "Word Count" and a data property set to an empty array.
+* options is an object that contains various configuration options for a chart, such as its type, axis labels, colors, and data labels.
+      * The chart property in the options object specifies the chart ID, which is used to identify the chart when multiple charts are present on the same page.
+      * The xaxis property in the options object defines the X-axis of the chart and sets its categories to an empty array.
+      * The plotOptions property in the options object defines the options for the plot of the chart, which in this case is a bar chart. The bar property sets the width of          the bars to 100% and distributes them evenly.
+      * The dataLabels property in the options object is used to enable or disable data labels in the chart, in this case they are disabled.
+      * The colors property in the options object sets the color of the bars to #00122e.
+      * The fill property in the options object sets the type of fill for the bars, which in this case is a gradient. The gradient starts with a light shade and goes to             #ADD8E6.
+* The series property is an array of objects representing the data series in the chart. In this case, it contains a single object with a name property set to "Word Count"     and a data property set to an empty array.
 
 ***
 
@@ -229,37 +222,36 @@ Line By Line Explanation of above written code :
     saveAs(blob, "histogram-data.csv");
   };
 ```
-This code defines a function called handleExport, which is responsible for exporting the chart data to a CSV file. Let's break down the code line by line:
+* This code defines a function called handleExport, which is responsible for exporting the chart data to a CSV file. Let's break down the code line by line:
+   *  ```react 
+        const data = [...]
+       ```
+      Define a new variable called data and set it to an array of arrays. The first array contains the column headers for the CSV file ("Word" and "Count"). The rest of the       arrays contain the actual data, which is taken from chartData.series[0].data.
 
-1. ```react 
-   const data = [...]
-   ```
-   Define a new variable called data and set it to an array of arrays. The first array contains the column headers for the CSV file ("Word" and "Count"). The rest of the      arrays contain the actual data, which is taken from chartData.series[0].data.
+   *  ```react 
+        ...chartData.series[0].data.map((count, i) => [...]
+      ```
+      Use the spread operator to add the results of a map function to the data array. The map function takes two arguments: count, which represents the count value for a         particular word, and i, which represents the index of the word in chartData.options.xaxis.categories.
 
-2. ```react 
-   ...chartData.series[0].data.map((count, i) => [...]
-   ```
-   Use the spread operator to add the results of a map function to the data array. The map function takes two arguments: count, which represents the count value for a          particular word, and i, which represents the index of the word in chartData.options.xaxis.categories.
+   * ```react 
+      [chartData.options.xaxis.categories[i], count] 
+     ```
+      Return a new array containing the word and its corresponding count value.
 
-3. ```react 
-   [chartData.options.xaxis.categories[i], count] 
-   ```
-   Return a new array containing the word and its corresponding count value.
+   * ``` react 
+       const csv = data.map((row) => row.join(",")).join("\n"); 
+     ```
+      Define a new variable called csv and set it to a string that represents the CSV data. The map function takes each array in the data array and turns it into a comma-         separated string using the join method. The outer join method then concatenates all of these strings together, separated by newlines.
 
-4. ``` react 
-   const csv = data.map((row) => row.join(",")).join("\n"); 
-   ```
-   Define a new variable called csv and set it to a string that represents the CSV data. The map function takes each array in the data array and turns it into a comma-        separated string using the join method. The outer join method then concatenates all of these strings together, separated by newlines.
+    * ```react
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      ```
+      Create a new Blob object containing the CSV data, with the MIME type set to "text/csv;charset=utf-8".
 
-5. ```react
-   const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-   ```
-   Create a new Blob object containing the CSV data, with the MIME type set to "text/csv;charset=utf-8".
-
-6. ```react 
-   saveAs(blob, "histogram-data.csv");
-   ```
-   Use the saveAs function from the file-saver library to save the CSV file with the name "histogram-data.csv".
+    * ```react 
+      saveAs(blob, "histogram-data.csv");
+      ```
+      Use the saveAs function from the file-saver library to save the CSV file with the name "histogram-data.csv".
 
 ***
 
@@ -297,25 +289,25 @@ This code defines a function called handleExport, which is responsible for expor
 }
 ```
 This is a React component that renders a chart and a button to fetch and display data, and another button to export the data as a CSV file.
-   1. The component is wrapped in a div with an ID of MainContainer.
-   2. There's a condition to render a container with a submit button if showSubmitButton is true.
-       1. The container has an ID of FetchDataContainer.
-       2. The button has an onClick event that triggers the fetchData function.
-       3. The button has a class of Button.
-   3. There's a condition to render a chart and an export button if showSubmitButton is false.
-      1. The container has an ID of ChartMainContainer.
-      2. There's a sub-container with an ID of ChartContainer that renders the chart using the Chart component from a chart library.
-          1. The Chart component receives the chart options and data as props from the chartData state.
-          2. The chart type is set to "bar".
-          3. The chart height is set to 450 pixels and width to 800 pixels.
-      3. There's another sub-container with an ID of ExportButtonContainer that renders an export button.
-          1. The button has an onClick event that triggers the handleExport function.
-          2. The button has a class of Button.
+   * The component is wrapped in a div with an ID of MainContainer.
+   * There's a condition to render a container with a submit button if showSubmitButton is true.
+       * The container has an ID of FetchDataContainer.
+       * The button has an onClick event that triggers the fetchData function.
+       * The button has a class of Button.
+   * There's a condition to render a chart and an export button if showSubmitButton is false.
+      * The container has an ID of ChartMainContainer.
+      * There's a sub-container with an ID of ChartContainer that renders the chart using the Chart component from a chart library.
+          * The Chart component receives the chart options and data as props from the chartData state.
+          * The chart type is set to "bar".
+          * The chart height is set to 450 pixels and width to 800 pixels.
+      * There's another sub-container with an ID of ExportButtonContainer that renders an export button.
+          * The button has an onClick event that triggers the handleExport function.
+          * The button has a class of Button.
 
-   4. When the fetchData function is triggered, it fetches text data from a remote URL and calculates the word count using JavaScript.
-      1. The text data is processed and stored in state using the setChartData function.
-      2. The showSubmitButton state is set to false to show the chart and export button.
-   5. When the handleExport function is triggered, the data from the chart is converted to a CSV file and downloaded by the user.
+   * When the fetchData function is triggered, it fetches text data from a remote URL and calculates the word count using JavaScript.
+      * The text data is processed and stored in state using the setChartData function.
+      * The showSubmitButton state is set to false to show the chart and export button.
+   * When the handleExport function is triggered, the data from the chart is converted to a CSV file and downloaded by the user.
 
 ***
 
