@@ -147,5 +147,211 @@ The series property is an array of objects representing the data series in the c
     setShowSubmitButton(false);
   };
 
+Line By Line Explanation of above written code :
+
+1. const fetchData = async () => {  } 
+     This lines defines an asynchronous function called fetchData. 
+2. const response = await fetch("https://www.terriblytinytales.com/test.txt");
+   This makes an HTTP request to the URL https://www.terriblytinytales.com/test.txt using the fetch API and waits for the response.
+3. const text = await response.text();
+   This retrieves the response body as plain text.
+4. const wordCount = {};
+   This creates an empty object called wordCount which will store the count of each word.
+5. text
+      .toLowerCase()
+      .replace(/[\W_]+/g, " ")
+      .split(/\s+/)
+      .forEach((word) => {
+              wordCount[word] = (wordCount[word] || 0) + 1;
+      });
+
+      This normalizes the text by converting it to lowercase, replacing all non-alphanumeric characters with a space, splitting the resulting text into an array of words,         and then counts the frequency of each word in the text by updating the wordCount object.
+6. const sortedWords = Object.entries(wordCount).sort(([,a], [, b]) => b - a);
+   This converts the wordCount object into an array of [word, count] pairs using Object.entries(), sorts the array in descending order of the count, and stores the result      in sortedWords.
+7. const categories = sortedWords.slice(0,20).map(([word]) => word);
+   This selects the top 20 words with the highest count and extracts the word from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting        array of words in categories.      
+8. const data = sortedWords.slice(0, 20).map(([,count]) => count);
+   This selects the top 20 words with the highest count and extracts the count from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting      array of counts in data.
+9. setChartData({
+       options: {
+             ...chartData.options,
+             xaxis: {
+                  categories,
+            },
+       },
+       series: [
+           {
+               name: "Word Count",
+               data,
+           },
+       ],
+   });
+
+This updates the chartData state by merging the existing options object with a new xaxis object that includes the categories array, and creating a new series array with a single object that includes the data array and a name property.
+
+10. setShowSubmitButton(false);
+    This updates the showSubmitButton state to false, which will hide the submit button after the data is loaded.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  const handleExport = () => {
+    const data = [
+      ["Word", "Count"],
+      ...chartData.series[0].data.map((count, i) => [
+        chartData.options.xaxis.categories[i],
+        count,
+      ]),
+    ];
+    const csv = data.map((row) => row.join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    saveAs(blob, "histogram-data.csv");
+  };
+
+This code defines a function called handleExport, which is responsible for exporting the chart data to a CSV file. Let's break down the code line by line:
+
+1. const data = [...]
+   Define a new variable called data and set it to an array of arrays. The first array contains the column headers for the CSV file ("Word" and "Count"). The rest of the      arrays contain the actual data, which is taken from chartData.series[0].data.
+
+2. ...chartData.series[0].data.map((count, i) => [...]
+   Use the spread operator to add the results of a map function to the data array. The map function takes two arguments: count, which represents the count value for a          particular word, and i, which represents the index of the word in chartData.options.xaxis.categories.
+
+3. [chartData.options.xaxis.categories[i], count] 
+   Return a new array containing the word and its corresponding count value.
+
+4. const csv = data.map((row) => row.join(",")).join("\n"); 
+   Define a new variable called csv and set it to a string that represents the CSV data. The map function takes each array in the data array and turns it into a comma-        separated string using the join method. The outer join method then concatenates all of these strings together, separated by newlines.
+
+5. const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+   Create a new Blob object containing the CSV data, with the MIME type set to "text/csv;charset=utf-8".
+
+6. saveAs(blob, "histogram-data.csv");
+   Use the saveAs function from the file-saver library to save the CSV file with the name "histogram-data.csv".
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+   return (
+
+    <div id={style.MainContainer}>
+      {showSubmitButton && (
+        <div id={style.FetchDataContainer}>
+          <button onClick={fetchData} className={style.Button}>
+            Submit
+          </button>
+        </div>
+      )}
+      {!showSubmitButton && (
+        <div id={style.ChartMainContainer}>
+          <div id={style.ChartContainer}>
+            <Chart
+              options={chartData.options}
+              series={chartData.series}
+              type="bar"
+              height="450"
+              width="800"
+            />
+          </div>
+          <div id={style.ExportButtonContainer}>
+            <button onClick={handleExport} className={style.Button}>
+              Export
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+This is a React component that renders a chart and a button to fetch and display data, and another button to export the data as a CSV file.
+   1. The component is wrapped in a div with an ID of MainContainer.
+   2. There's a condition to render a container with a submit button if showSubmitButton is true.
+       1. The container has an ID of FetchDataContainer.
+       2. The button has an onClick event that triggers the fetchData function.
+       3. The button has a class of Button.
+   3. There's a condition to render a chart and an export button if showSubmitButton is false.
+      1. The container has an ID of ChartMainContainer.
+      2. There's a sub-container with an ID of ChartContainer that renders the chart using the Chart component from a chart library.
+          1. The Chart component receives the chart options and data as props from the chartData state.
+          2. The chart type is set to "bar".
+          3. The chart height is set to 450 pixels and width to 800 pixels.
+      3. There's another sub-container with an ID of ExportButtonContainer that renders an export button.
+          1. The button has an onClick event that triggers the handleExport function.
+          2. The button has a class of Button.
+
+   4. When the fetchData function is triggered, it fetches text data from a remote URL and calculates the word count using JavaScript.
+      1. The text data is processed and stored in state using the setChartData function.
+      2. The showSubmitButton state is set to false to show the chart and export button.
+   5. When the handleExport function is triggered, the data from the chart is converted to a CSV file and downloaded by the user.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Histogram.module.css This the external css file where I have written the css for this HistogramChart,js Component
+
+************* Histogram.module.css ****************
+
+
+#MainContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#FetchDataContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Button {
+    background-color: #000e24;
+    font-size: 1.4rem;
+    padding: 5px;
+    margin: 2px;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    outline: none;
+}
+
+.Button:hover {
+    color: white;
+    transform: scale(1.04);
+}
+
+#ChartMainContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#ChartContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+#ExportButtonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
 
 
