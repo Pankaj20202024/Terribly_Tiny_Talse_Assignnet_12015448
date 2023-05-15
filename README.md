@@ -17,8 +17,7 @@
 ## EXPLANATION OF THE FILE HistogramChart.js 
 
 ***
-
-* ```react
+```react
    import React, { useState } from "react";
    import Chart from "react-apexcharts";
    import { saveAs } from "file-saver";
