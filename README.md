@@ -18,7 +18,7 @@
 
 ***
 
-```react
+* ```react
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
 import { saveAs } from "file-saver";
@@ -239,12 +239,12 @@ This code defines a function called handleExport, which is responsible for expor
 
 2. ```react 
    ...chartData.series[0].data.map((count, i) => [...]
-```
+   ```
    Use the spread operator to add the results of a map function to the data array. The map function takes two arguments: count, which represents the count value for a          particular word, and i, which represents the index of the word in chartData.options.xaxis.categories.
 
 3. ```react 
    [chartData.options.xaxis.categories[i], count] 
-```
+   ```
    Return a new array containing the word and its corresponding count value.
 
 4. ``` react 
