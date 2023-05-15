@@ -26,23 +26,23 @@ import style from "./Histogram.module.css";
 This above block of code imports the necessary modules and stylesheets. React is imported for creating the component, useState is imported for managing component state, Chart is imported from the react-apexcharts library for rendering the histogram chart, and saveAs is imported from the file-saver library for exporting data to a CSV file. style is imported from a local CSS module file for styling the component.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+``` react
 export default function HistogramChart() {
     return (
         <div>  </div>
     );
 }
-
+```
 This line defines the component HistogramChart as a functional component that can be imported and used by other components.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+``` react
 const [showSubmitButton, setShowSubmitButton] = useState(true);
-
+```
 This line declares a state variable showSubmitButton and a function setShowSubmitButton that can update the value of the state variable. It uses the useState hook from the React library to do this. The initial value of showSubmitButton is true, which means the "Submit" button will be shown when the component is first rendered. The setShowSubmitButton function is used to update the value of showSubmitButton later on.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  
+ ```react 
   const [showSubmitButton, setShowSubmitButton] = useState(true);
   const [chartData, setChartData] = useState({
     options: {
@@ -83,7 +83,7 @@ This line declares a state variable showSubmitButton and a function setShowSubmi
       },
     ],
   });
-
+```
 
 This code declares another state variable chartData and a function setChartData that can update the value of the state variable. The initial value of chartData is an object that contains options for a bar chart that will be rendered later in the component. This object has two properties: options and series.
 
@@ -103,9 +103,8 @@ The fill property in the options object sets the type of fill for the bars, whic
 
 The series property is an array of objects representing the data series in the chart. In this case, it contains a single object with a name property set to "Word Count" and a data property set to an empty array.
 
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+``` react
   const fetchData = async () => {
     const response = await fetch("https://www.terriblytinytales.com/test.txt");
     const text = await response.text();
@@ -142,7 +141,7 @@ The series property is an array of objects representing the data series in the c
     });
     setShowSubmitButton(false);
   };
-
+```
 Line By Line Explanation of above written code :
 
 1. const fetchData = async () => {  } 
@@ -189,7 +188,7 @@ This updates the chartData state by merging the existing options object with a n
     This updates the showSubmitButton state to false, which will hide the submit button after the data is loaded.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+``` react
   const handleExport = () => {
     const data = [
       ["Word", "Count"],
@@ -202,7 +201,7 @@ This updates the chartData state by merging the existing options object with a n
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
     saveAs(blob, "histogram-data.csv");
   };
-
+```
 This code defines a function called handleExport, which is responsible for exporting the chart data to a CSV file. Let's break down the code line by line:
 
 1. const data = [...]
@@ -224,7 +223,7 @@ This code defines a function called handleExport, which is responsible for expor
    Use the saveAs function from the file-saver library to save the CSV file with the name "histogram-data.csv".
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+``` react
    return (
 
     <div id={style.MainContainer}>
@@ -256,7 +255,7 @@ This code defines a function called handleExport, which is responsible for expor
     </div>
   );
 }
-
+```
 This is a React component that renders a chart and a button to fetch and display data, and another button to export the data as a CSV file.
    1. The component is wrapped in a div with an ID of MainContainer.
    2. There's a condition to render a container with a submit button if showSubmitButton is true.
@@ -283,8 +282,7 @@ This is a React component that renders a chart and a button to fetch and display
 Histogram.module.css This the external css file where I have written the css for this HistogramChart,js Component
 
 ************* Histogram.module.css ****************
-
-
+``` css
 #MainContainer {
     width: 100%;
     height: 100%;
@@ -350,4 +348,4 @@ Histogram.module.css This the external css file where I have written the css for
     height: 100%;
 }
 
-
+```
