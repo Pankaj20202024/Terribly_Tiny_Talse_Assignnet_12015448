@@ -18,7 +18,7 @@
 
 ****
 
-``` react
+```react
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
 import { saveAs } from "file-saver";
@@ -28,7 +28,7 @@ This above block of code imports the necessary modules and stylesheets. React is
 
 ****
 
-``` react
+```react
 export default function HistogramChart() {
     return (
         <div>  </div>
@@ -39,7 +39,7 @@ This line defines the component HistogramChart as a functional component that ca
 
 ****
 
-``` react
+```react
 const [showSubmitButton, setShowSubmitButton] = useState(true);
 ```
 This line declares a state variable showSubmitButton and a function setShowSubmitButton that can update the value of the state variable. It uses the useState hook from the React library to do this. The initial value of showSubmitButton is true, which means the "Submit" button will be shown when the component is first rendered. The setShowSubmitButton function is used to update the value of showSubmitButton later on.
@@ -109,7 +109,7 @@ The series property is an array of objects representing the data series in the c
 
 ****
 
-``` react
+```react
   const fetchData = async () => {
     const response = await fetch("https://www.terriblytinytales.com/test.txt");
     const text = await response.text();
@@ -154,12 +154,12 @@ Line By Line Explanation of above written code :
    ```
      This lines defines an asynchronous function called fetchData. 
 
-2. ``` react 
+2. ```react 
      const response = await fetch("https://www.terriblytinytales.com/test.txt"
    ```
    This makes an HTTP request to the URL https://www.terriblytinytales.com/test.txt using the fetch API and waits for the response.
 
-3. ``` react 
+3. ```react 
    const text = await response.text();
    ```
    This retrieves the response body as plain text.
@@ -168,7 +168,7 @@ Line By Line Explanation of above written code :
    const wordCount = {};
    ```
    This creates an empty object called wordCount which will store the count of each word.
-5. ``` react 
+5. ```react 
    text
       .toLowerCase()
       .replace(/[\W_]+/g, " ")
@@ -179,12 +179,12 @@ Line By Line Explanation of above written code :
    ```
       This normalizes the text by converting it to lowercase, replacing all non-alphanumeric characters with a space, splitting the resulting text into an array of words,         and then counts the frequency of each word in the text by updating the wordCount object.
 
-6. ``` react 
+6. ```react 
    const sortedWords = Object.entries(wordCount).sort(([,a], [, b]) => b - a);
    ```
    This converts the wordCount object into an array of [word, count] pairs using Object.entries(), sorts the array in descending order of the count, and stores the result      in sortedWords.
 
-7. ``` react 
+7. ```react 
    const categories = sortedWords.slice(0,20).map(([word]) => word);
    ```
    This selects the top 20 words with the highest count and extracts the word from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting        array of words in categories.      
@@ -211,7 +211,7 @@ Line By Line Explanation of above written code :
 
 This updates the chartData state by merging the existing options object with a new xaxis object that includes the categories array, and creating a new series array with a single object that includes the data array and a name property.
 
-10. ``` react 
+10. ```react 
     setShowSubmitButton(false);
     ```
     This updates the showSubmitButton state to false, which will hide the submit button after the data is loaded.
@@ -252,19 +252,19 @@ This code defines a function called handleExport, which is responsible for expor
    ```
    Define a new variable called csv and set it to a string that represents the CSV data. The map function takes each array in the data array and turns it into a comma-        separated string using the join method. The outer join method then concatenates all of these strings together, separated by newlines.
 
-5. ``` react
+5. ```react
    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
    ```
    Create a new Blob object containing the CSV data, with the MIME type set to "text/csv;charset=utf-8".
 
-6. ``` react 
+6. ```react 
    saveAs(blob, "histogram-data.csv");
    ```
    Use the saveAs function from the file-saver library to save the CSV file with the name "histogram-data.csv".
 
 ****
 
-``` react
+```react
    return (
 
     <div id={style.MainContainer}>
@@ -323,7 +323,7 @@ This is a React component that renders a chart and a button to fetch and display
 Histogram.module.css This the external css file where I have written the css for this HistogramChart,js Component
 
 ************* Histogram.module.css ****************
-``` css
+```css
 #MainContainer {
     width: 100%;
     height: 100%;
