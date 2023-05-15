@@ -45,53 +45,48 @@ const [showSubmitButton, setShowSubmitButton] = useState(true);
 This line declares a state variable showSubmitButton and a function setShowSubmitButton that can update the value of the state variable. It uses the useState hook from the React library to do this. The initial value of showSubmitButton is true, which means the "Submit" button will be shown when the component is first rendered. The setShowSubmitButton function is used to update the value of showSubmitButton later on.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-const [chartData, setChartData] = useState(
-      {
-      options: {
-
-             chart: {
-                  id: "basic-bar",
-             },
-
-             xaxis: {
-                  categories: [],                     
-             },
-
-             plotOptions: {
-                  bar: {
-                       columnWidth:"100%",
-                       distributed:false,
-                  },
-              },
-
-             dataLabels: {
-                  enabled: false,
-             },
-
-             colors: ["#00122e"],
-
-             fill: {
-                  type: "gradient",
-                  gradient: {
-                          shade: "light",
-                          type: "vertical",
-                          shadeIntensity: 0.5,
-                          gradientToColors: ["#ADD8E6"],
-                          inverseColors: false,
-                          opacityFrom: 1,
-                          opacityTo: 1,
-                          stops: [0, 100],
-                  },
-             },
+  
+  const [showSubmitButton, setShowSubmitButton] = useState(true);
+  const [chartData, setChartData] = useState({
+    options: {
+      chart: {
+        id: "basic-bar",
       },
-      series: [
-             {
-                 name: "Word Count",
-                 data: [],
-             },
-      ],
-});
+      xaxis: {
+        categories: [],
+      },
+      plotOptions: {
+        bar: {
+          columnWidth: "100%",
+          distributed: false,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      colors: ["#00122e"],
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "light",
+          type: "vertical",
+          shadeIntensity: 0.5,
+          gradientToColors: ["#ADD8E6"],
+          inverseColors: false,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 100],
+        },
+      },
+    },
+    series: [
+      {
+        name: "Word Count",
+        data: [],
+      },
+    ],
+  });
+
 
 This code declares another state variable chartData and a function setChartData that can update the value of the state variable. The initial value of chartData is an object that contains options for a bar chart that will be rendered later in the component. This object has two properties: options and series.
 
