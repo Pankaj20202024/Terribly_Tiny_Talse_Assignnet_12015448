@@ -1,5 +1,7 @@
 #### Hosted Link : https://terriblyassignementbypankaj12015448.netlify.app
 
+***
+
 ## **LIBRARIES AND PLUGINS USED**
 1. React
 2. useState
@@ -7,6 +9,7 @@
 4. saveAs is imported from the file-saver
 5. style is imported from a local CSS module file for styling the component.
 
+***
 
 ## **EXPLANATION OF THE CODE**
 
