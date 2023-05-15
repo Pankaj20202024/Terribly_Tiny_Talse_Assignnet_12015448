@@ -14,7 +14,7 @@
    occuring word over the histogram .
    and inside the Histogram.module.css I have written the css for HistogramChart.js file .
 
-## **EXPLANATION OF THE FILE HistogramChart.js **
+## EXPLANATION OF THE FILE HistogramChart.js 
 
 ****
 
@@ -190,7 +190,7 @@ Line By Line Explanation of above written code :
    This selects the top 20 words with the highest count and extracts the word from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting        array of words in categories.      
 8. ``` react 
    const data = sortedWords.slice(0, 20).map(([,count]) => count);
-   ``` react
+   ``` 
    This selects the top 20 words with the highest count and extracts the count from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting      array of counts in data.
 9. ``` react 
    setChartData({
