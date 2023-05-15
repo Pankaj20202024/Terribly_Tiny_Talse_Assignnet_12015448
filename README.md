@@ -15,8 +15,7 @@
    and inside the Histogram.module.css I have written the css for HistogramChart.js file .
 
 ********** EXPLANATION OF THE FILE HistogramChart.js ************
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+****
 ``` react
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
