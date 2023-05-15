@@ -19,8 +19,11 @@
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 import React, { useState } from "react";
+
 import Chart from "react-apexcharts";
+
 import { saveAs } from "file-saver";
+
 import style from "./Histogram.module.css";
 
 This above block of code imports the necessary modules and stylesheets. React is imported for creating the component, useState is imported for managing component state, Chart is imported from the react-apexcharts library for rendering the histogram chart, and saveAs is imported from the file-saver library for exporting data to a CSV file. style is imported from a local CSS module file for styling the component.
@@ -28,9 +31,9 @@ This above block of code imports the necessary modules and stylesheets. React is
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export default function HistogramChart() {
-  return ( 
-    <div>  </div>
-  );
+    return (
+        <div>  </div>
+    );
 }
 
 This line defines the component HistogramChart as a functional component that can be imported and used by other components.
