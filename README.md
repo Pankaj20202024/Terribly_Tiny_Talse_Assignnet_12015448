@@ -89,22 +89,22 @@ This line declares a state variable showSubmitButton and a function setShowSubmi
 This code declares another state variable chartData and a function setChartData that can update the value of the state variable. The initial value of chartData is an object that contains options for a bar chart that will be rendered later in the component. This object has two properties: options and series.
 
 * options is an object that contains various configuration options for a chart, such as its type, axis labels, colors, and data labels.
-      * The chart property in the options object specifies the chart ID, which is used to identify the chart when multiple charts are present on the same page.
-      * The xaxis property in the options object defines the X-axis of the chart and sets its categories to an empty array.
-      * The plotOptions property in the options object defines the options for the plot of the chart, which in this case is a bar chart. The bar property sets the width of          the bars to 100% and distributes them evenly.
-      * The dataLabels property in the options object is used to enable or disable data labels in the chart, in this case they are disabled.
-      * The colors property in the options object sets the color of the bars to #00122e.
-      * The fill property in the options object sets the type of fill for the bars, which in this case is a gradient. The gradient starts with a light shade and goes to             #ADD8E6.
+   * The chart property in the options object specifies the chart ID, which is used to identify the chart when multiple charts are present on the same page.
+   * The xaxis property in the options object defines the X-axis of the chart and sets its categories to an empty array.
+   * The plotOptions property in the options object defines the options for the plot of the chart, which in this case is a bar chart. The bar property sets the width of          the bars to 100% and distributes them evenly.
+   * The dataLabels property in the options object is used to enable or disable data labels in the chart, in this case they are disabled.
+   * The colors property in the options object sets the color of the bars to #00122e.
+   * The fill property in the options object sets the type of fill for the bars, which in this case is a gradient. The gradient starts with a light shade and goes to             #ADD8E6.
 * The series property is an array of objects representing the data series in the chart. In this case, it contains a single object with a name property set to "Word Count"     and a data property set to an empty array.
 
 ***
 
 ```react
   const fetchData = async () => {
-    const response = await fetch("https://www.terriblytinytales.com/test.txt");
-    const text = await response.text();
-    const wordCount = {};
-    text
+  const response = await fetch("https://www.terriblytinytales.com/test.txt");
+  const text = await response.text();
+  const wordCount = {};
+  text
       .toLowerCase()
       .replace(/[\W_]+/g, " ")
       .split(/\s+/)
@@ -114,51 +114,51 @@ This code declares another state variable chartData and a function setChartData 
         } else {
           wordCount[word] = 1;
         }
-      });
+   });
 
-    const sortedWords = Object.entries(wordCount).sort(([, a], [, b]) => b - a);
-    const categories = sortedWords.slice(0, 20).map(([word]) => word);
-    const data = sortedWords.slice(0, 20).map(([, count]) => count);
+   const sortedWords = Object.entries(wordCount).sort(([, a], [, b]) => b - a);
+   const categories = sortedWords.slice(0, 20).map(([word]) => word);
+   const data = sortedWords.slice(0, 20).map(([, count]) => count);
 
-    setChartData({
-      options: {
-        ...chartData.options,
-        xaxis: {
+   setChartData({
+     options: {
+       ...chartData.options,
+       xaxis: {
           categories,
-        },
-      },
-      series: [
-        {
-          name: "Word Count",
-          data,
-        },
-      ],
-    });
-    setShowSubmitButton(false);
-  };
+       },
+     },
+     series: [
+       {
+         name: "Word Count",
+         data,
+       },
+     ],
+   });
+   setShowSubmitButton(false);
+};
+
 ```
 Line By Line Explanation of above written code :
 
-1. ```react 
+* ```react 
      const fetchData = async () => {  } 
    ```
      This lines defines an asynchronous function called fetchData. 
 
-2. ```react 
+* ```react 
      const response = await fetch("https://www.terriblytinytales.com/test.txt"
    ```
    This makes an HTTP request to the URL https://www.terriblytinytales.com/test.txt using the fetch API and waits for the response.
 
-3. ```react 
+* ```react 
    const text = await response.text();
    ```
    This retrieves the response body as plain text.
-
-4. ```react
+* ```react
    const wordCount = {};
    ```
    This creates an empty object called wordCount which will store the count of each word.
-5. ```react 
+* ```react 
    text
       .toLowerCase()
       .replace(/[\W_]+/g, " ")
@@ -169,20 +169,20 @@ Line By Line Explanation of above written code :
    ```
       This normalizes the text by converting it to lowercase, replacing all non-alphanumeric characters with a space, splitting the resulting text into an array of words,         and then counts the frequency of each word in the text by updating the wordCount object.
 
-6. ```react 
+* ```react 
    const sortedWords = Object.entries(wordCount).sort(([,a], [, b]) => b - a);
    ```
    This converts the wordCount object into an array of [word, count] pairs using Object.entries(), sorts the array in descending order of the count, and stores the result      in sortedWords.
 
-7. ```react 
+* ```react 
    const categories = sortedWords.slice(0,20).map(([word]) => word);
    ```
    This selects the top 20 words with the highest count and extracts the word from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting        array of words in categories.      
-8. ```react 
+* ```react 
    const data = sortedWords.slice(0, 20).map(([,count]) => count);
    ``` 
    This selects the top 20 words with the highest count and extracts the count from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting      array of counts in data.
-9. ```react 
+* ```react 
    setChartData({
        options: {
              ...chartData.options,
@@ -200,7 +200,7 @@ Line By Line Explanation of above written code :
    ``` 
    This updates the chartData state by merging the existing options object with a new xaxis object that includes the categories array, and creating a new series array with    a single object that includes the data array and a name property.
 
-10. ```react 
+* ```react 
     setShowSubmitButton(false);
     ```
     This updates the showSubmitButton state to false, which will hide the submit button after the data is loaded.
