@@ -14,7 +14,7 @@
    occuring word over the histogram .
    and inside the Histogram.module.css I have written the css for HistogramChart.js file .
 
-## EXPLANATION OF THE FILE HistogramChart.js 
+## HistogramChart.js 
 
 ***
 ```react
@@ -223,35 +223,35 @@ Line By Line Explanation of above written code :
   };
 ```
 * This code defines a function called handleExport, which is responsible for exporting the chart data to a CSV file. Let's break down the code line by line:
-   *  ```react 
-        const data = [...]
-       ```
-      Define a new variable called data and set it to an array of arrays. The first array contains the column headers for the CSV file ("Word" and "Count"). The rest of the       arrays contain the actual data, which is taken from chartData.series[0].data.
-
-   *  ```react 
-        ...chartData.series[0].data.map((count, i) => [...]
-      ```
-      Use the spread operator to add the results of a map function to the data array. The map function takes two arguments: count, which represents the count value for a         particular word, and i, which represents the index of the word in chartData.options.xaxis.categories.
+   * ```react 
+     const data = [...]
+     ```
+     Define a new variable called data and set it to an array of arrays. The first array contains the column headers for the CSV file ("Word" and "Count"). The rest of the      arrays contain the actual data, which is taken from chartData.series[0].data.
 
    * ```react 
-      [chartData.options.xaxis.categories[i], count] 
+     ...chartData.series[0].data.map((count, i) => [...]
      ```
-      Return a new array containing the word and its corresponding count value.
+     Use the spread operator to add the results of a map function to the data array. The map function takes two arguments: count, which represents the count value for a          particular word, and i, which represents the index of the word in chartData.options.xaxis.categories.
+
+   * ```react 
+     [chartData.options.xaxis.categories[i], count] 
+     ```
+     Return a new array containing the word and its corresponding count value.
 
    * ``` react 
-       const csv = data.map((row) => row.join(",")).join("\n"); 
+     const csv = data.map((row) => row.join(",")).join("\n"); 
      ```
-      Define a new variable called csv and set it to a string that represents the CSV data. The map function takes each array in the data array and turns it into a comma-         separated string using the join method. The outer join method then concatenates all of these strings together, separated by newlines.
+     Define a new variable called csv and set it to a string that represents the CSV data. The map function takes each array in the data array and turns it into a comma-        separated string using the join method. The outer join method then concatenates all of these strings together, separated by newlines.
 
-    * ```react
-      const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-      ```
-      Create a new Blob object containing the CSV data, with the MIME type set to "text/csv;charset=utf-8".
+   * ```react
+     const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+     ```
+     Create a new Blob object containing the CSV data, with the MIME type set to "text/csv;charset=utf-8".
 
-    * ```react 
-      saveAs(blob, "histogram-data.csv");
-      ```
-      Use the saveAs function from the file-saver library to save the CSV file with the name "histogram-data.csv".
+   * ```react 
+     saveAs(blob, "histogram-data.csv");
+     ```
+     Use the saveAs function from the file-saver library to save the CSV file with the name "histogram-data.csv".
 
 ***
 
@@ -311,9 +311,10 @@ This is a React component that renders a chart and a button to fetch and display
 
 ***
 
+## Histogram.module.css
+
 Histogram.module.css This the external css file where I have written the css for this HistogramChart,js Component
 
-************* Histogram.module.css ****************
 ```css
 #MainContainer {
     width: 100%;
