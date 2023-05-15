@@ -215,7 +215,9 @@ This updates the chartData state by merging the existing options object with a n
     setShowSubmitButton(false);
     ```
     This updates the showSubmitButton state to false, which will hide the submit button after the data is loaded.
+
 ****
+
 ```react
   const handleExport = () => {
     const data = [
