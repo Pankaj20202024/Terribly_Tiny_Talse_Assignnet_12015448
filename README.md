@@ -188,11 +188,11 @@ Line By Line Explanation of above written code :
    const categories = sortedWords.slice(0,20).map(([word]) => word);
    ```
    This selects the top 20 words with the highest count and extracts the word from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting        array of words in categories.      
-8. ``` react 
+8. ```react 
    const data = sortedWords.slice(0, 20).map(([,count]) => count);
    ``` 
    This selects the top 20 words with the highest count and extracts the count from each [word, count] pair using Array.slice() and Array.map(), and stores the resulting      array of counts in data.
-9. ``` react 
+9. ```react 
    setChartData({
        options: {
              ...chartData.options,
@@ -207,7 +207,6 @@ Line By Line Explanation of above written code :
            },
        ],
    });
-
 ``` 
 
 This updates the chartData state by merging the existing options object with a new xaxis object that includes the categories array, and creating a new series array with a single object that includes the data array and a name property.
@@ -216,10 +215,8 @@ This updates the chartData state by merging the existing options object with a n
     setShowSubmitButton(false);
     ```
     This updates the showSubmitButton state to false, which will hide the submit button after the data is loaded.
-
 ****
-
-``` react
+```react
   const handleExport = () => {
     const data = [
       ["Word", "Count"],
@@ -235,21 +232,19 @@ This updates the chartData state by merging the existing options object with a n
 ```
 This code defines a function called handleExport, which is responsible for exporting the chart data to a CSV file. Let's break down the code line by line:
 
-1. ``` react 
+1. ```react 
    const data = [...]
    ```
    Define a new variable called data and set it to an array of arrays. The first array contains the column headers for the CSV file ("Word" and "Count"). The rest of the      arrays contain the actual data, which is taken from chartData.series[0].data.
 
-2. ``` react 
+2. ```react 
    ...chartData.series[0].data.map((count, i) => [...]
-
-   ```
+```
    Use the spread operator to add the results of a map function to the data array. The map function takes two arguments: count, which represents the count value for a          particular word, and i, which represents the index of the word in chartData.options.xaxis.categories.
 
-3. ``` react 
+3. ```react 
    [chartData.options.xaxis.categories[i], count] 
-
-   ```
+```
    Return a new array containing the word and its corresponding count value.
 
 4. ``` react 
