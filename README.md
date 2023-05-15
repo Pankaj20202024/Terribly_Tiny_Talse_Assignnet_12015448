@@ -28,7 +28,9 @@ This above block of code imports the necessary modules and stylesheets. React is
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export default function HistogramChart() {
-  return <div></div>;
+  return ( 
+    <div>  </div>
+  );
 }
 
 This line defines the component HistogramChart as a functional component that can be imported and used by other components.
