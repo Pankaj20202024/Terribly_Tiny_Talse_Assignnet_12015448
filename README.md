@@ -207,9 +207,8 @@ Line By Line Explanation of above written code :
            },
        ],
    });
-``` 
-
-This updates the chartData state by merging the existing options object with a new xaxis object that includes the categories array, and creating a new series array with a single object that includes the data array and a name property.
+   ``` 
+   This updates the chartData state by merging the existing options object with a new xaxis object that includes the categories array, and creating a new series array with    a single object that includes the data array and a name property.
 
 10. ```react 
     setShowSubmitButton(false);
