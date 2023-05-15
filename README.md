@@ -15,7 +15,9 @@
    and inside the Histogram.module.css I have written the css for HistogramChart.js file .
 
 ********** EXPLANATION OF THE FILE HistogramChart.js ************
+
 ****
+
 ``` react
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
@@ -24,7 +26,8 @@ import style from "./Histogram.module.css";
 ```
 This above block of code imports the necessary modules and stylesheets. React is imported for creating the component, useState is imported for managing component state, Chart is imported from the react-apexcharts library for rendering the histogram chart, and saveAs is imported from the file-saver library for exporting data to a CSV file. style is imported from a local CSS module file for styling the component.
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+****
+
 ``` react
 export default function HistogramChart() {
     return (
@@ -34,13 +37,15 @@ export default function HistogramChart() {
 ```
 This line defines the component HistogramChart as a functional component that can be imported and used by other components.
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+****
+
 ``` react
 const [showSubmitButton, setShowSubmitButton] = useState(true);
 ```
 This line declares a state variable showSubmitButton and a function setShowSubmitButton that can update the value of the state variable. It uses the useState hook from the React library to do this. The initial value of showSubmitButton is true, which means the "Submit" button will be shown when the component is first rendered. The setShowSubmitButton function is used to update the value of showSubmitButton later on.
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+****
+
  ```react 
   const [showSubmitButton, setShowSubmitButton] = useState(true);
   const [chartData, setChartData] = useState({
@@ -102,7 +107,8 @@ The fill property in the options object sets the type of fill for the bars, whic
 
 The series property is an array of objects representing the data series in the chart. In this case, it contains a single object with a name property set to "Word Count" and a data property set to an empty array.
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+****
+
 ``` react
   const fetchData = async () => {
     const response = await fetch("https://www.terriblytinytales.com/test.txt");
@@ -186,7 +192,8 @@ This updates the chartData state by merging the existing options object with a n
 10. setShowSubmitButton(false);
     This updates the showSubmitButton state to false, which will hide the submit button after the data is loaded.
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+****
+
 ``` react
   const handleExport = () => {
     const data = [
@@ -221,7 +228,8 @@ This code defines a function called handleExport, which is responsible for expor
 6. saveAs(blob, "histogram-data.csv");
    Use the saveAs function from the file-saver library to save the CSV file with the name "histogram-data.csv".
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+****
+
 ``` react
    return (
 
@@ -276,7 +284,7 @@ This is a React component that renders a chart and a button to fetch and display
       2. The showSubmitButton state is set to false to show the chart and export button.
    5. When the handleExport function is triggered, the data from the chart is converted to a CSV file and downloaded by the user.
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+****
 
 Histogram.module.css This the external css file where I have written the css for this HistogramChart,js Component
 
